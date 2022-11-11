@@ -13,8 +13,10 @@ current_folder_path = os.path.join(folder_path, formatted_date)
 if not os.path.exists(current_folder_path):
     os.makedirs(current_folder_path)
 
-for file in os.listdir("D:/"):
-    if file.__contains__(".jpg") or file.__contains__(".mov"):
-        shutil.move("D:/" + file, current_folder_path)
-
-print(os.listdir("D:/"))
+if os.listdir("D:/").__contains__("DCIM"):
+    for file in os.listdir("D:/DCIM"):
+        if file.__contains__(".jpg") or file.__contains__(".mov"):
+            source_file = os.path.join("D:/DCIM", file)
+            destination_file = os.path.join("D:/DCIM", formatted_date + " " + file)
+            os.rename(source_file, destination_file)
+            shutil.move(destination_file, current_folder_path)
